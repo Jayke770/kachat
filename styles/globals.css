@@ -1,16 +1,35 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Main Shape 1 */
+.custom-shape-divider-bottom-1647246727 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.custom-shape-divider-bottom-1647246727 svg {
+    position: relative;
+    display: block;
+    width: calc(144% + 1.3px);
+    height: 209px;
 }
 
-* {
-  box-sizing: border-box;
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-shape-divider-bottom-1647246727 svg {
+        width: calc(181% + 1.3px);
+        height: 209px;
+    }
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    .custom-shape-divider-bottom-1647246727 svg {
+        width: calc(191% + 1.3px);
+        height: 209px;
+    }
 }
