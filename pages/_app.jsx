@@ -1,5 +1,6 @@
 import "aos/dist/aos.css"
 import '../styles/globals.css'
+import 'animate.css'
 import { App } from "konsta/react"
 import { useEffect } from "react"
 import AOS from "aos"
@@ -13,7 +14,7 @@ export default function Kachat({ Component, pageProps }) {
     });
   }, []);
   return (
-    <App theme="material" dark safeAreas>
+    <App className="" theme="material" dark safeAreas>
       <Component {...pageProps} />
     </App>
   )
