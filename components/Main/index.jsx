@@ -15,14 +15,14 @@ export default function Main() {
                         data-aos-duration="1000"
                         className="font-normal">Meet friends around the world</p>
                 </div>
-                <div className="trasition-all flex md:justify-center lg:justify-end fixed w-full lg:right-[100px] xl:right-[200px] z-20 p-3">
+                <div className="trasition-all flex md:justify-center lg:justify-end fixed w-full lg:right-[100px] xl:right-[150px] z-20 p-3">
                     <Card
                         data-aos="fade-up"
                         margin="m-0"
-                        className="!rounded-xl w-full md:w-[350px]">
+                        className="!rounded-xl w-full md:w-[400px]">
                         <div className="grid place-items-center">
                             <Icon>
-                                <PersonAltCircleFill className="w-36 h-36 text-primary" />
+                                <PersonAltCircleFill className="text-primary h-44 w-44" />
                             </Icon>
                             <p className="font-normal lg:hidden text-center">Meet friends around the world</p>
                         </div>
@@ -59,9 +59,9 @@ export default function Main() {
                                 <LogoGoogle className='w-5 h-5' />
                                 <span className="w-full text-center">Continue with Google</span>
                             </Button>
-                            <p className="text-center mt-3">
-                                Don't have an account?
-                                <NextLink href='#signup'>
+                            <p className="text-center mt-3 text-gray-900 dark:text-gray-300">
+                                {"Don't have an account?"}
+                                <NextLink href='/signup'>
                                     <a className="text-primary dark:text-primary-dark underline"> Sign Up</a>
                                 </NextLink>
                             </p>
@@ -77,7 +77,6 @@ export default function Main() {
                         className="fill-primary dark:fill-primary-dark"></path>
                 </svg>
             </div>
-
         </>
     )
 }
