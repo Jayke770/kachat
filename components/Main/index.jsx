@@ -4,7 +4,7 @@ import { PersonAltCircleFill, LogoGoogle } from 'framework7-icons/react'
 export default function Main() {
     return (
         <>
-            <div className="h-screen w-full grid place-items-center gap-2 bg-gray-200 dark:bg-page-material-dark">
+            <div className="h-screen w-full flex justify-center items-center gap-2 bg-gray-200 dark:bg-page-material-dark">
                 <div className="w-full lg:flex flex-col pl-28 gap-2 hidden">
                     <h1
                         data-aos="fade-up"
@@ -24,7 +24,7 @@ export default function Main() {
                             <Icon>
                                 <PersonAltCircleFill className="text-primary h-44 w-44" />
                             </Icon>
-                            <p className="font-normal lg:hidden text-center">Meet friends around the world</p>
+                            <p className="font-normal lg:hidden text-center">KaChatMeet friends around the world</p>
                         </div>
                         <List
                             className="mb-1"

@@ -2,7 +2,7 @@ import { List, ListButton, ListInput } from 'konsta/react'
 import NextLink from 'next/link'
 export default function SignupForm() {
 	return (
-		<div className="h-screen w-full flex justify-center items-center p-2 bg-gray-200 dark:bg-page-material-dark">
+		<div className="h-screen w-full flex justify-center items-center bg-gray-200 dark:bg-page-material-dark p-3">
 			<div data-aos="fade-up" className="grid lg:grid-cols-2 z-50 gap-2 p-2 bg-block-strong-light dark:bg-block-strong-dark overflow-hidden shadow rounded-xl w-full sm:w-4/6 lg:w-[70%]">
 				<div className='w-full hidden lg:flex justify-center items-center'>
 					<img
@@ -11,7 +11,7 @@ export default function SignupForm() {
 						src="/assets/signup.svg" />
 				</div>
 				<div className='w-full flex flex-col py-5'>
-					<div className='w-full mb-3 px-4 flex flex-col justify-start items-start'>
+					<div className='w-full mb-3 px-3 lg:px-4 flex flex-col justify-start items-start'>
 						<p className='text-3xl font-extrabold text-primary dark:text-primary-dark'>Create Your Account</p>
 						<p className='text-sm px-1'>{"It's free and easy Sign Up Now!"}</p>
 					</div>
