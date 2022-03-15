@@ -24,7 +24,7 @@ export default function Main() {
                             <Icon>
                                 <PersonAltCircleFill className="text-primary h-44 w-44" />
                             </Icon>
-                            <p className="font-normal lg:hidden text-center">KaChatMeet friends around the world</p>
+                            <p className="font-normal lg:hidden text-center">Meet friends around the world</p>
                         </div>
                         <List
                             className="mb-1"
