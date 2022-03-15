@@ -7,11 +7,11 @@ export default function ResetPassword() {
             <Head>
                 <title>Reset your password</title>
             </Head>
-            <div className="h-screen z-20 w-full flex justify-center items-center bg-gray-200 dark:bg-page-material-dark p-3">
+            <div className="h-screen w-full flex justify-center items-center bg-gray-200 dark:bg-page-material-dark p-3">
                 <Card
                     data-aos="fade-up"
                     margin='m-0'
-                    className='w-full sm:w-[500px] !rounded-xl'>
+                    className='z-20 w-full sm:w-[500px] !rounded-xl'>
                     <div className='flex flex-col mb-3'>
                         <p className='text-3xl font-extrabold text-primary dark:text-primary-dark'>Reset Password</p>
                     </div>
