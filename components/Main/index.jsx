@@ -1,6 +1,6 @@
 import { Card, List, ListInput, ListButton, Icon, Button, Link } from "konsta/react"
 import NextLink from 'next/link'
-import { PersonAltCircleFill, LogoGoogle } from 'framework7-icons/react'
+import { LogoGoogle, ChatBubble2 } from 'framework7-icons/react'
 export default function Main() {
     return (
         <>
@@ -22,7 +22,7 @@ export default function Main() {
                         className="!rounded-xl w-full md:w-[400px]">
                         <div className="grid place-items-center">
                             <Icon>
-                                <PersonAltCircleFill className="text-primary h-44 w-44" />
+                                <ChatBubble2 className="text-primary h-44 w-44" />
                             </Icon>
                             <p className="font-normal lg:hidden text-center">Meet friends around the world</p>
                         </div>
@@ -41,27 +41,28 @@ export default function Main() {
                                 placeholder="Password"
                                 type="password"
                             />
-                            <div className="flex justify-end px-3">
+                            <div className="flex justify-end px-3 mt-2">
                                 <NextLink
-                                    href='#forgt'>
+                                    href='/auth/reset-password'>
                                     <a
-                                        className="text-red-500 text-sm">
-                                        Forgot Password ?</a>
+                                        className="text-red-500 text-sm underline">
+                                        Forgot Password?</a>
                                 </NextLink>
                             </div>
                             <ListButton
                                 className="mt-5 mx-3 border dark:border-primary-dark/50 border-primary/50 rounded-md">
                                 Login</ListButton>
                         </List>
-                        <div className="mx-3 mt-5">
+                        <div className="mx-3">
+                            <p className='text-center p-2 dark:text-gray-400 text-gray-500'>or</p>
                             <Button
-                                className="flex gap-3 !p-4">
+                                className="flex gap-3">
                                 <LogoGoogle className='w-5 h-5' />
                                 <span className="w-full text-center">Continue with Google</span>
                             </Button>
                             <p className="text-center mt-3 text-gray-900 dark:text-gray-300">
                                 {"Don't have an account?"}
-                                <NextLink href='/signup'>
+                                <NextLink href='/auth/signup'>
                                     <a className="text-primary dark:text-primary-dark underline"> Sign Up</a>
                                 </NextLink>
                             </p>

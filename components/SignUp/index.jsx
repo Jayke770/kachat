@@ -1,9 +1,10 @@
-import { List, ListButton, ListInput } from 'konsta/react'
+import { List, ListButton, ListInput, Button } from 'konsta/react'
 import NextLink from 'next/link'
+import { PersonAltCircleFill, LogoGoogle } from 'framework7-icons/react'
 export default function SignupForm() {
 	return (
 		<div className="h-screen w-full flex justify-center items-center bg-gray-200 dark:bg-page-material-dark p-3">
-			<div data-aos="fade-up" className="grid lg:grid-cols-2 z-50 gap-2 p-2 bg-block-strong-light dark:bg-block-strong-dark overflow-hidden shadow rounded-xl w-full sm:w-4/6 lg:w-[70%]">
+			<div data-aos="fade-up" className="grid lg:grid-cols-2 z-50 gap-2 p-2 bg-block-strong-light dark:bg-block-strong-dark overflow-hidden shadow rounded-xl w-full sm:w-4/6 lg:w-[80%]">
 				<div className='w-full hidden lg:flex justify-center items-center'>
 					<img
 						className='object-fill w-full h-60'
@@ -38,7 +39,13 @@ export default function SignupForm() {
 							className="mt-5 mx-3 border dark:border-primary-dark/50 border-primary/50 rounded-md">
 							Sign Up</ListButton>
 					</List>
-					<div className="mx-3 mt-5">
+					<div className="mx-3">
+						<p className='text-center p-2 dark:text-gray-400 text-gray-500'>or</p>
+						<Button
+							className="flex gap-3">
+							<LogoGoogle className='w-5 h-5' />
+							<span className="w-full text-center">Sign Up with Google</span>
+						</Button>
 						<p className="text-center mt-3 text-gray-900 dark:text-gray-300">
 							{"Already have an account?"}
 							<NextLink href='/'>

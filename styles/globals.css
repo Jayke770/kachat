@@ -29,7 +29,7 @@
 /** For mobile devices **/
 @media (max-width: 767px) {
     .custom-shape-divider-bottom-1647246727 svg {
-        width: calc(191% + 2.3px);
-        height: 220px;
+        width: calc(191% + 1.3px);
+        height: 210px;
     }
 }

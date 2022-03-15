@@ -1,6 +1,6 @@
 import { Page } from "konsta/react"
 import Head from 'next/head'
-import SignupForm from '../components/SignUp'
+import SignupForm from '../../components/SignUp'
 export default function SignUp() {
     return (
         <Page>
