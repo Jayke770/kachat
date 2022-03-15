@@ -17,7 +17,7 @@ export default function Kachat({ Component, pageProps }) {
   return (
     <>
       <NextNProgress
-        color="#0066d6"
+        color="#22c55e"
         height={3}
         startPosition={0.2}
         options={{ easing: "ease", speed: 500 }} />
