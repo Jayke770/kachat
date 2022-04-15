@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Navbar, Link, Icon } from 'konsta/react'
-import { ArrowtriangleDownCircleFill, ChatBubbleTextFill, BellFill } from 'framework7-icons/react'
+import { ArrowtriangleDownCircleFill, ChatBubbleTextFill, BellFill, Bars } from 'framework7-icons/react'
 import NextLink from 'next/link'
 import Menu from './menu'
 export default function Navigation() {
-    const [menu, setmenu] = useState({ target: undefined, opened: false })
+    const [menu, setmenu] = useState(false)
     return (
         <>
             <Navbar
@@ -28,9 +28,9 @@ export default function Navigation() {
                         <Link
                             navbar
                             className='menu'
-                            onClick={() => setmenu({ target: '.menu', opened: true })}>
+                            onClick={() => setmenu(true)}>
                             <Icon badge={1} badgeColors={{ bg: "bg-red-500" }}>
-                                <ArrowtriangleDownCircleFill className="w-7 h-7" />
+                                <Bars className="w-7 h-7" />
                             </Icon>
                         </Link>
                     </>
@@ -38,7 +38,7 @@ export default function Navigation() {
 
             {/* Menu */}
             <Menu
-                data={{ target: menu.target, opened: menu.opened }}
+                menu={menu}
                 setmenu={setmenu} />
         </>
     )

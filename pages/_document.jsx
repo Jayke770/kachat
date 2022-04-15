@@ -6,6 +6,7 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#0066d6" />
         <meta name="title" content="KaChat" />
+        <link rel="shortcut icon" href="/icon.png" type="image/x-png" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
