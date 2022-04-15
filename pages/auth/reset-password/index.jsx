@@ -1,13 +1,14 @@
-import { Page, Card, List, ListButton, ListInput } from 'konsta/react'
+import { Card, List, ListButton, ListInput } from 'konsta/react'
 import Head from 'next/head'
 import NextLink from 'next/link'
+import { getSession } from 'next-auth/react'
 export default function ResetPassword() {
     return (
-        <Page>
+        <>
             <Head>
                 <title>Reset your password</title>
             </Head>
-            <div className="h-screen w-full flex justify-center items-center bg-gray-200 dark:bg-page-material-dark p-3">
+            <div className="h-screen w-full flex justify-center items-center p-3">
                 <Card
                     data-aos="fade-up"
                     margin='m-0'
@@ -31,12 +32,12 @@ export default function ResetPassword() {
                             }}>Reset Account</ListButton>
                     </List>
                     <div className='flex justify-center mt-5'>
-                        <NextLink href='/'>
-                            <a className="text-primary dark:text-primary-dark underline text-right mr-1">Login</a>
+                        <NextLink href='/auth/login'>
+                            <a className="text-primary underline text-right mr-1">Login</a>
                         </NextLink>
                         {"|"}
                         <NextLink href='/auth/signup'>
-                            <a className="text-primary dark:text-primary-dark underline ml-1">Sign Up</a>
+                            <a className="text-primary underline ml-1">Sign Up</a>
                         </NextLink>
                     </div>
                 </Card>
@@ -49,6 +50,20 @@ export default function ResetPassword() {
                         className="fill-primary dark:fill-primary-dark"></path>
                 </svg>
             </div>
-        </Page>
+        </>
     )
+}
+export async function getServerSideProps(ctx) {
+    const session = await getSession(ctx)
+    if (session) {
+        return {
+            redirect: {
+                destination: '/'
+            },
+        }
+    } else {
+        return {
+            props: {}
+        }
+    }
 }

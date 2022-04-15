@@ -1,9 +1,10 @@
 import { List, ListButton, ListInput, Button } from 'konsta/react'
 import NextLink from 'next/link'
-import { PersonAltCircleFill, LogoGoogle } from 'framework7-icons/react'
+import { LogoGoogle } from 'framework7-icons/react'
+import { signIn } from 'next-auth/react'
 export default function SignupForm() {
 	return (
-		<div className="h-screen w-full flex justify-center items-center bg-gray-200 dark:bg-page-material-dark p-3">
+		<div className="h-screen overflow-hidden w-full flex justify-center items-center p-3">
 			<div data-aos="fade-up" className="grid lg:grid-cols-2 z-50 gap-2 p-2 bg-block-strong-light dark:bg-block-strong-dark overflow-hidden shadow rounded-xl w-full sm:w-4/6 lg:w-[80%]">
 				<div className='w-full hidden lg:flex justify-center items-center'>
 					<img
@@ -11,7 +12,7 @@ export default function SignupForm() {
 						alt='Signup Icon'
 						src="/assets/signup.svg" />
 				</div>
-				<div className='w-full flex flex-col py-5'>
+				<div className='w-full flex flex-col py-5 lg:px-3'>
 					<div className='w-full mb-3 px-3 lg:px-4 flex flex-col justify-start items-start'>
 						<p className='text-3xl font-extrabold text-primary dark:text-primary-dark'>Create Your Account</p>
 						<p className='text-sm px-1'>{"It's free and easy Sign Up Now!"}</p>
@@ -42,14 +43,15 @@ export default function SignupForm() {
 					<div className="mx-3">
 						<p className='text-center p-2 dark:text-gray-400 text-gray-500'>or</p>
 						<Button
+							onClick={() => signIn('google', { callbackUrl: '/' })}
 							className="flex gap-3">
 							<LogoGoogle className='w-5 h-5' />
 							<span className="w-full text-center">Sign Up with Google</span>
 						</Button>
-						<p className="text-center mt-3 text-gray-900 dark:text-gray-300">
+						<p className="text-center mt-3 text-gray-900 dark:text-gray-300 text-sm">
 							{"Already have an account?"}
-							<NextLink href='/'>
-								<a className="text-primary dark:text-primary-dark underline"> Login</a>
+							<NextLink href='/auth/login'>
+								<a className="text-primary underline"> Login</a>
 							</NextLink>
 						</p>
 					</div>

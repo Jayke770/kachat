@@ -1,13 +1,32 @@
-import Head from "next/head"
-import { Page, Card, Block } from "konsta/react"
-import Main from '../components/Main'
-export default function Index() {
-  return (
-    <Page>
-      <Head>
-        <title>Welcome to KaChat - Create or login your account</title>
-      </Head>
-      <Main/>
-    </Page>
-  )
+import { getSession } from 'next-auth/react'
+import Head from 'next/head'
+import Navigation from '../components/Navigation'
+export default function Index(data) {
+    return (
+        <>
+            <Head>
+                <title>KaChat</title>
+            </Head>
+
+            {/* Navigation */}
+            <Navigation />
+        </>
+    )
+}
+export async function getServerSideProps(ctx) {
+    const session = await getSession(ctx)
+    if (session) {
+        return {
+            props: {
+                data: session
+            }
+        }
+    } else {
+        return {
+            redirect: {
+                destination: '/auth/login'
+            },
+            props: {}
+        }
+    }
 }
