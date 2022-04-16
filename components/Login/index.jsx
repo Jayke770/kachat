@@ -51,7 +51,7 @@ export default function LoginForm() {
                                 </NextLink>
                             </div>
                             <ListButton
-                                className="mt-5 mx-3 border dark:border-primary-dark/50 border-primary/50 rounded-md">
+                                className="mt-5 mx-3">
                                 Login</ListButton>
                         </List>
                         <div className="mx-3">

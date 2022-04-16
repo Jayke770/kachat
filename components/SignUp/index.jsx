@@ -37,7 +37,7 @@ export default function SignupForm() {
 							type='password'
 							label='Confirm Password' />
 						<ListButton
-							className="mt-5 mx-3 border dark:border-primary-dark/50 border-primary/50 rounded-md">
+							className="mt-5 mx-3">
 							Sign Up</ListButton>
 					</List>
 					<div className="mx-3">

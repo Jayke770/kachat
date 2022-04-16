@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Navbar, Link, Icon } from 'konsta/react'
-import { ArrowtriangleDownCircleFill, ChatBubbleTextFill, BellFill, Bars } from 'framework7-icons/react'
+import { ChatBubbleTextFill, BellFill, Bars } from 'framework7-icons/react'
 import NextLink from 'next/link'
 import Menu from './menu'
-export default function Navigation() {
+export default function Navigation({ user }) {
     const [menu, setmenu] = useState(false)
     return (
         <>
@@ -15,6 +15,14 @@ export default function Navigation() {
                 }
                 right={
                     <>
+                        <Link navbar>
+                            <div className='flex gap-1 items-center'>
+                                <img
+                                    className='object-cover h-8 w-12 rounded-full'
+                                    src={user.image}
+                                    alt='user profile' />
+                            </div>
+                        </Link>
                         <Link navbar>
                             <Icon badge={2} badgeColors={{ bg: "bg-red-500" }}>
                                 <ChatBubbleTextFill className="w-7 h-7" />

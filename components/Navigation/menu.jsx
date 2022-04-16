@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
-import { Panel, List, ListItem, Toggle, Navbar, Link, BlockTitle, Radio } from "konsta/react"
+import { Panel, List, ListItem, Navbar, Link, BlockTitle, Radio, Preloader, Badge } from "konsta/react"
 import { Xmark } from 'framework7-icons/react'
+import { signOut } from 'next-auth/react'
 import Theme from '../../lib/Theme/setTheme'
 import Mode from '../../lib/Theme/setDarkmode'
 export default function Menu({ menu, setmenu }) {
     const { theme, updatetheme } = Theme()
     const { thememode, updatethememode } = Mode()
     const [darkmode, setdarkmode] = useState('')
+    const [signout, setsignout] = useState(false)
     const changemode = (val) => {
         setdarkmode(val)
         updatethememode(val)
@@ -38,11 +40,14 @@ export default function Menu({ menu, setmenu }) {
                         media={
                             <Radio
                                 checked={theme === 'ios'}
-                                onChange={() => updatetheme('ios')} />
+                                readOnly />
                         }
                         chevron={false}
                         title="iOS Theme"
                         link
+                        after={
+                            <Badge colors={{ bg: 'bg-yellow-700' }}>Unstable</Badge>
+                        }
                         className='dark:text-neutral-300'
                         onClick={() => updatetheme('ios')}
                     />
@@ -50,7 +55,7 @@ export default function Menu({ menu, setmenu }) {
                         media={
                             <Radio
                                 checked={theme === 'material'}
-                                onChange={() => updatetheme('material')} />
+                                readOnly />
                         }
                         chevron={false}
                         title="Material Theme"
@@ -61,16 +66,31 @@ export default function Menu({ menu, setmenu }) {
                 </List>
                 <List inset className='!mt-3'>
                     <ListItem
-                        after={
-                            <Toggle
+                        media={
+                            <Radio
                                 checked={darkmode === 'dark'}
-                                onChange={() => changemode(thememode === 'dark' ? 'default' : 'dark')} />
+                                readOnly />
                         }
                         chevron={false}
                         title="Dark Mode"
                         link
                         className='dark:text-neutral-300'
                         onClick={() => changemode(thememode === 'dark' ? 'default' : 'dark')}
+                    />
+                </List>
+                <BlockTitle className='!mt-3 dark:text-neutral-200'>Account Settings</BlockTitle>
+                <List inset className='!mb-2'>
+                    <ListItem
+                        title="Logout"
+                        link
+                        chevronIcon={signout && <Preloader size='w-6 h-6' />}
+                        onClick={() => {
+                            if (!signout) {
+                                setsignout(true)
+                                signOut()
+                            }
+                        }}
+                        className='dark:text-neutral-300'
                     />
                 </List>
             </div>

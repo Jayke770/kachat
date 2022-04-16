@@ -18,8 +18,7 @@ export default function Kachat({ Component, pageProps: { session, ...pageProps }
       mirror: false,
     })
     setcurrentTheme(theme)
-  }, [])
-  console.log(currentTheme)
+  }, [currentTheme, theme])
   return (
     <SessionProvider session={session}>
       <NextNProgress
