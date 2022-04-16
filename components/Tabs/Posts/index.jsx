@@ -35,7 +35,7 @@ export default function Posts({ tab, user, posts }) {
                 })
             }
             setdata({ ...data, posts: newposts, viewed: viewedposts })
-        }, 2000)
+        }, 1000)
     }
     return (
         <div
