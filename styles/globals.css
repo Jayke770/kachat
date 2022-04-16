@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+::-webkit-scrollbar {
+	@apply w-1 h-1;
+}
+::-webkit-scrollbar-track {
+	@apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+	@apply dark:bg-primary-dark bg-primary-light cursor-pointer;
+}
 /* Main Shape 1 */
 .custom-shape-divider-bottom-1647246727 {
     position: absolute;

@@ -2,7 +2,11 @@ import { useState } from 'react'
 import { Tabbar, TabbarLink } from 'konsta/react'
 import { getSession } from 'next-auth/react'
 import Head from 'next/head'
+import { SearchCircle, Search, Person2Fill, LayersFill } from 'framework7-icons/react'
 import Navigation from '../components/Navigation'
+import FindFriends from '../components/Tabs/FindFriends'
+import Posts from '../components/Tabs/Posts'
+import Friends from '../components/Tabs/Friends'
 export default function Index({ data: { user } }) {
     const [tab, settab] = useState('posts')
     return (
@@ -15,19 +19,10 @@ export default function Index({ data: { user } }) {
             <Navigation user={user} />
 
             {/* Main */}
-            <div className='transition-all grid w-full h-[calc(100vh-104px)] lg:h-[calc(100vh-64px)] lg:grid-cols-4 overflow-hidden'>
-                <div
-                    className={`${tab === 'find friends' ? 'flex animate__animated animate__fadeIn' : 'hidden'} lg:flex w-full h-full bg-blue-700 justify-center items-center`}>
-                    Find Friends
-                </div>
-                <div
-                    className={`${tab === 'posts' ? 'flex animate__animated animate__fadeIn' : 'hidden'} w-full h-full bg-amber-700 justify-center items-center lg:col-span-2`}>
-                    Posts
-                </div>
-                <div
-                    className={`${tab === 'friends' ? 'flex animate__animated animate__fadeIn' : 'hidden'} lg:flex w-full h-full bg-rose-700 justify-center items-center`}>
-                    Friends
-                </div>
+            <div className='transition-all grid w-full lg:grid-cols-4'>
+                <FindFriends tab={tab} />
+                <Posts tab={tab} user={user} />
+                <Friends tab={tab} />
             </div>
 
             {/* Tabbar only visible when media width is less than 1024px */}
@@ -36,15 +31,15 @@ export default function Index({ data: { user } }) {
                 <TabbarLink
                     onClick={() => settab('find friends')}
                     active={tab === 'find friends'}
-                    label="Find Friends" />
+                    label={<Search className="w-7 h-7" />} />
                 <TabbarLink
                     onClick={() => settab('posts')}
                     active={tab === 'posts'}
-                    label="Posts" />
+                    label={<LayersFill className="w-7 h-7" />} />
                 <TabbarLink
                     onClick={() => settab('friends')}
                     active={tab === 'friends'}
-                    label="Friends" />
+                    label={<Person2Fill className="w-7 h-7" />} />
             </Tabbar>
         </>
     )
