@@ -49,7 +49,7 @@ export default function Posts({ tab, user, posts }) {
                 next={loadposts}
                 endMessage={<span className='text-center'>No more posts</span>}
                 loader={<span className='text-center'>Please wait...</span>}>
-                
+
                 {/* Create Post */}
                 <div className='w-full'>
                     <Card
@@ -87,12 +87,10 @@ export default function Posts({ tab, user, posts }) {
                                 <div className='flex justify-between items-center p-2'>
                                     <div className='flex gap-2'>
                                         <NextLink href={`/profile/${post.id}`} passHref>
-                                            <a>
-                                                <img
-                                                    className='rounded-full w-12 h-12 object-cover cursor-pointer'
-                                                    src={post.image}
-                                                    alt='user profile' />
-                                            </a>
+                                            <img
+                                                className='rounded-full w-12 h-12 object-cover cursor-pointer'
+                                                src={post.image}
+                                                alt='user profile' />
                                         </NextLink>
                                         <div className='flex flex-col justify-start items-start'>
                                             <NextLink href={`/profile/${post.id}`} passHref>
