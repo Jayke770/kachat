@@ -12,7 +12,7 @@ export default function Posts({ tab, user }) {
     const [posts, setposts] = useState(null)
     useEffect(() => {
         let data = []
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 20; i++) {
             data.push({
                 id: faker.datatype.uuid(),
                 image: faker.image.avatar(),
