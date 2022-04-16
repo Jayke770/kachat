@@ -28,7 +28,15 @@ export default function Posts({ tab, user, posts }) {
                     id: faker.datatype.uuid(),
                     image: faker.image.avatar(),
                     name: faker.name.findName(),
-                    photos: [faker.image.abstract(), faker.image.animals(), faker.image.avatar()],
+                    photos: [
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`,
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`,
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`,
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`,
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`,
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`,
+                        `https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`
+                    ],
                     text: faker.lorem.sentences(),
                     privacy: 'Public',
                     created: moment().format()

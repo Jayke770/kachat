@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import SignupForm from '../../../components/SignUp'
 import { getSession } from 'next-auth/react'
+import Theme from '../../../lib/Theme/setTheme'
+import Mode from '../../../lib/Theme/setDarkmode'
 export default function SignUp() {
+    const { theme, updatetheme } = Theme()
+    const { thememode, updatethememode } = Mode()
     return (
         <>
             <Head>
