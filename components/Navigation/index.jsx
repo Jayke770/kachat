@@ -9,20 +9,22 @@ export default function Navigation({ user }) {
         <>
             <Navbar
                 left={
-                    <NextLink href='/'>
+                    <NextLink href="/" passHref>
                         <Link navbar>KaChat</Link>
                     </NextLink>
                 }
                 right={
                     <>
-                        <Link navbar>
-                            <div className='flex gap-1 items-center'>
-                                <img
-                                    className='object-cover h-8 w-12 rounded-full'
-                                    src={user.image}
-                                    alt='user profile' />
-                            </div>
-                        </Link>
+                        <NextLink href={user.id} passHref>
+                            <Link navbar>
+                                <div className='flex gap-1 items-center'>
+                                    <img
+                                        className='object-cover h-8 w-12 rounded-full'
+                                        src={user.image}
+                                        alt='user profile' />
+                                </div>
+                            </Link>
+                        </NextLink>
                         <Link navbar>
                             <Icon badge={2} badgeColors={{ bg: "bg-red-500" }}>
                                 <ChatBubbleTextFill className="w-7 h-7" />

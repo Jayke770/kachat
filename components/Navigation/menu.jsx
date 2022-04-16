@@ -7,15 +7,12 @@ import Mode from '../../lib/Theme/setDarkmode'
 export default function Menu({ menu, setmenu }) {
     const { theme, updatetheme } = Theme()
     const { thememode, updatethememode } = Mode()
-    const [darkmode, setdarkmode] = useState('')
+    const [darkmode, setdarkmode] = useState(thememode)
     const [signout, setsignout] = useState(false)
     const changemode = (val) => {
         setdarkmode(val)
         updatethememode(val)
     }
-    useEffect(() => {
-        setdarkmode(thememode)
-    }, [])
     return (
         <Panel
             opened={menu}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, Button, Link, Icon } from 'konsta/react'
+import { Card, Button, Link, Preloader } from 'konsta/react'
 import { Ellipsis, HeartFill, Heart, ChatBubbleText, ArrowshapeTurnUpRight } from 'framework7-icons/react'
 import NextLink from 'next/link'
 import faker from '@faker-js/faker'
@@ -23,7 +23,9 @@ export default function Posts({ tab, user }) {
                 created: faker.date.past()
             })
         }
-        setposts(data)
+        setTimeout(() => {
+            setposts(data)
+        }, 1000)
     }, [])
     return (
         <div className={`${tab === 'posts' ? 'flex animate__animated animate__fadeIn' : 'hidden'} flex-col gap-2 overflow-auto lg:px-15 p-2 w-full h-[calc(100vh-104px)] lg:h-[calc(100vh-64px)] lg:col-span-2`}>
@@ -54,9 +56,8 @@ export default function Posts({ tab, user }) {
             {/* Posts */}
             {posts ? (
                 posts.map((post, i) => (
-                    <div className='w-full'>
+                    <div key={i} className='w-full'>
                         <Card
-                            key={i}
                             className='!w-full !rounded-lg'
                             margin='m-0'
                             header={
@@ -67,7 +68,7 @@ export default function Posts({ tab, user }) {
                                             src={post.image}
                                             alt='user profile' />
                                         <div className='flex flex-col justify-start items-start'>
-                                            <NextLink href={post.id}>
+                                            <NextLink href={post.id} passHref>
                                                 <Link className='text-bold'>{post.name}</Link>
                                             </NextLink>
                                             <span className='text-xs text-gray-500 dark:text-gray-400'>{moment(post.created).fromNow()} - {post.privacy}</span>
@@ -110,8 +111,7 @@ export default function Posts({ tab, user }) {
                                     spaceBetween={2}
                                     modules={[Pagination]}>
                                     {post.photos.map((photo, i) => (
-                                        <SwiperSlide
-                                            key={i}>
+                                        <SwiperSlide key={i}>
                                             <img
                                                 className='w-full object-cover h-[450px]'
                                                 alt="post"
@@ -124,7 +124,9 @@ export default function Posts({ tab, user }) {
                     </div>
                 ))
             ) : (
-                <div>fsaf</div>
+                <div className='grid place-items-center w-full'>
+                    <Preloader />
+                </div>
             )
             }
         </div >
