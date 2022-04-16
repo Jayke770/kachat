@@ -15,7 +15,7 @@ export default function Navigation({ user }) {
                 }
                 right={
                     <>
-                        <NextLink href={user.id} passHref>
+                        <NextLink href={`/profile/${user.id}`} passHref>
                             <Link navbar>
                                 <div className='flex gap-1 items-center'>
                                     <img

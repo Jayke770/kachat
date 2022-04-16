@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { Tabbar, TabbarLink } from 'konsta/react'
 import { getSession } from 'next-auth/react'
 import Head from 'next/head'
-import { SearchCircle, Search, Person2Fill, LayersFill } from 'framework7-icons/react'
+import { Search, Person2Fill, LayersFill } from 'framework7-icons/react'
 import Navigation from '../components/Navigation'
 import FindFriends from '../components/Tabs/FindFriends'
 import Posts from '../components/Tabs/Posts'
 import Friends from '../components/Tabs/Friends'
-export default function Index({ data: { user } }) {
+import faker from '@faker-js/faker'
+import moment from 'moment'
+export default function Index({ data: { user }, posts }) {
     const [tab, settab] = useState('posts')
     return (
         <>
@@ -21,7 +23,7 @@ export default function Index({ data: { user } }) {
             {/* Main */}
             <div className='transition-all grid w-full lg:grid-cols-4'>
                 <FindFriends tab={tab} />
-                <Posts tab={tab} user={user} />
+                <Posts tab={tab} user={user} posts={posts} />
                 <Friends tab={tab} />
             </div>
 
@@ -47,9 +49,22 @@ export default function Index({ data: { user } }) {
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
     if (session) {
+        let posts = []
+        for (let i = 0; i < 5; i++) {
+            posts.push({
+                id: faker.datatype.uuid(),
+                image: faker.image.avatar(),
+                name: faker.name.findName(),
+                photos: [faker.image.abstract(), faker.image.animals(), faker.image.avatar()],
+                text: faker.lorem.sentences(),
+                privacy: 'Public',
+                created: moment().format()
+            })
+        }
         return {
             props: {
-                data: session
+                data: session,
+                posts: posts
             }
         }
     } else {
