@@ -1,5 +1,7 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import FacebookProvider from 'next-auth/providers/facebook'
+import GitHubProvider from "next-auth/providers/github"
 import Credentials from 'next-auth/providers/credentials'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import clientPromise from "../../../lib/mongodb"
@@ -9,6 +11,14 @@ export default NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
+        }),
+        FacebookProvider({
+            clientId: process.env.FACEBOOK_CLIENT_ID,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+        }),
+        GitHubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET
         }),
         Credentials({
             async authorize(credentials, req) {
@@ -31,7 +41,7 @@ export default NextAuth({
             return session
         }
     },
-    pages: {    
-        signIn: '/auth/login'
+    pages: {
+        signIn: '/'
     }
 })

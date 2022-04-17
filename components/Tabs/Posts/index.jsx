@@ -65,7 +65,7 @@ export default function Posts({ tab, user, posts }) {
                         className='!w-full !rounded-lg mb-2'
                         margin='m-0'
                         footer={
-                            <div className='grid grid-cols-3 gap-2'>
+                            <div className='grid grid-cols-2 gap-2'>
                                 <Button
                                     clear>
                                     Photos

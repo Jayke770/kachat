@@ -1,6 +1,6 @@
-import { Card, List, ListInput, ListButton, Icon, Button, Link } from "konsta/react"
+import { Card, List, ListInput, Icon, Button } from "konsta/react"
 import NextLink from 'next/link'
-import { LogoGoogle, ChatBubble2 } from 'framework7-icons/react'
+import { LogoGoogle, ChatBubble2, LogoFacebook, LogoGithub } from 'framework7-icons/react'
 import { signIn } from 'next-auth/react'
 export default function LoginForm() {
     return (
@@ -22,9 +22,10 @@ export default function LoginForm() {
                         margin="m-0"
                         className="!rounded-xl w-full md:w-[380px]">
                         <div className="grid place-items-center">
-                            <Icon>
-                                <ChatBubble2 className="text-primary h-40 w-40" />
-                            </Icon>
+                            <img
+                                className="h-36 w-36 object-contain mb-3    "
+                                alt="kachat icon"
+                                src="/icon.png" />
                             <p className="font-normal lg:hidden text-center">Meet friends around the world</p>
                         </div>
                         <List
@@ -50,18 +51,55 @@ export default function LoginForm() {
                                         Forgot Password?</a>
                                 </NextLink>
                             </div>
-                            <ListButton
-                                className="mt-5 mx-3">
-                                Login</ListButton>
+                            <div className="px-3 mt-4">
+                                <Button
+                                    rounded>
+                                    Login</Button>
+                            </div>
                         </List>
                         <div className="mx-3">
                             <p className='text-center p-2 dark:text-gray-400 text-gray-500'>or</p>
-                            <Button
-                                onClick={() => signIn('google', { callbackUrl: '/' })}
-                                className="flex gap-3">
-                                <LogoGoogle className='w-5 h-5' />
-                                <span className="w-full text-center">Continue with Google</span>
-                            </Button>
+                            <div className="flex justify-center items-center gap-2">
+                                <Button
+                                    rounded
+                                    onClick={() => signIn('google', { callbackUrl: '/home' })}
+                                    className="flex gap-3 !w-auto"
+                                    colors={{
+                                        text: 'text-red-500',
+                                        border: 'border-red-500',
+                                        bg: 'bg-red-500',
+                                        activeBg: 'active:bg-red-500',
+                                        activeBgDark: 'active:bg-red-600',
+                                    }}>
+                                    <LogoGoogle className='w-5 h-5' />
+                                </Button>
+                                <Button
+                                    rounded
+                                    onClick={() => signIn('facebook', { callbackUrl: '/home' })}
+                                    className="flex gap-3 !w-auto"
+                                    colors={{
+                                        text: 'text-blue-700',
+                                        border: 'border-blue-700',
+                                        bg: 'bg-blue-700',
+                                        activeBg: 'active:bg-blue-700',
+                                        activeBgDark: 'active:bg-blue-700',
+                                    }}>
+                                    <LogoFacebook className='w-5 h-5' />
+                                </Button>
+                                <Button
+                                    rounded
+                                    onClick={() => signIn('github', { callbackUrl: '/home' })}
+                                    className="flex gap-3 !w-auto"
+                                    colors={{
+                                        text: 'text-zinc-600',
+                                        border: 'border-zinc-600',
+                                        bg: 'bg-zinc-600',
+                                        activeBg: 'active:bg-zinc-600',
+                                        activeBgDark: 'active:bg-zinc-600',
+                                    }}>
+                                    <LogoGithub className='w-5 h-5' />
+                                </Button>
+                            </div>
                             <p className="text-center mt-3 text-gray-900 dark:text-gray-300 text-sm">
                                 {"Don't have an account?"}
                                 <NextLink href='/auth/signup'>

@@ -27,7 +27,7 @@ export default function Reset() {
                             }}>Reset Account</ListButton>
                     </List>
                     <div className='flex justify-center mt-5'>
-                        <NextLink href='/auth/login'>
+                        <NextLink href='/'>
                             <a className="text-primary underline text-right mr-1">Login</a>
                         </NextLink>
                         {"|"}

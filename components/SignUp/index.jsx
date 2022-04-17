@@ -1,6 +1,6 @@
-import { List, ListButton, ListInput, Button } from 'konsta/react'
+import { List, ListInput, Button } from 'konsta/react'
 import NextLink from 'next/link'
-import { LogoGoogle } from 'framework7-icons/react'
+import { LogoGoogle, LogoFacebook, LogoGithub } from 'framework7-icons/react'
 import { signIn } from 'next-auth/react'
 export default function SignupForm() {
 	return (
@@ -15,7 +15,7 @@ export default function SignupForm() {
 				<div className='w-full flex flex-col py-5 lg:px-3'>
 					<div className='w-full mb-3 px-3 lg:px-4 flex flex-col justify-start items-start'>
 						<p className='text-3xl font-extrabold text-primary dark:text-primary-dark'>Create Your Account</p>
-						<p className='text-sm px-1'>{"It's free and easy Sign Up Now!"}</p>
+						<p className='text-sm px-1'>{"It's free and easy"}</p>
 					</div>
 					<List
 						className="w-full"
@@ -36,21 +36,58 @@ export default function SignupForm() {
 							floatingLabel
 							type='password'
 							label='Confirm Password' />
-						<ListButton
-							className="mt-5 mx-3">
-							Sign Up</ListButton>
+						<div className="mt-5 mx-3">
+							<Button
+								rounded>
+								Sign Up</Button>
+						</div>
 					</List>
 					<div className="mx-3">
-						<p className='text-center p-2 dark:text-gray-400 text-gray-500'>or</p>
-						<Button
-							onClick={() => signIn('google', { callbackUrl: '/' })}
-							className="flex gap-3">
-							<LogoGoogle className='w-5 h-5' />
-							<span className="w-full text-center">Sign Up with Google</span>
-						</Button>
+						<p className='text-center p-2 dark:text-gray-400 text-gray-500 my-1'>or</p>
+						<div className="flex justify-center items-center gap-2">
+							<Button
+								rounded
+								onClick={() => signIn('google', { callbackUrl: '/home' })}
+								className="flex gap-3 !w-auto"
+								colors={{
+									text: 'text-red-500',
+									border: 'border-red-500',
+									bg: 'bg-red-500',
+									activeBg: 'active:bg-red-500',
+									activeBgDark: 'active:bg-red-600',
+								}}>
+								<LogoGoogle className='w-5 h-5' />
+							</Button>
+							<Button
+								rounded
+								onClick={() => signIn('facebook', { callbackUrl: '/home' })}
+								className="flex gap-3 !w-auto"
+								colors={{
+									text: 'text-blue-700',
+									border: 'border-blue-700',
+									bg: 'bg-blue-700',
+									activeBg: 'active:bg-blue-700',
+									activeBgDark: 'active:bg-blue-700',
+								}}>
+								<LogoFacebook className='w-5 h-5' />
+							</Button>
+							<Button
+								rounded
+								onClick={() => signIn('github', { callbackUrl: '/home' })}
+								className="flex gap-3 !w-auto"
+								colors={{
+									text: 'text-zinc-600',
+									border: 'border-zinc-600',
+									bg: 'bg-zinc-600',
+									activeBg: 'active:bg-zinc-600',
+									activeBgDark: 'active:bg-zinc-600',
+								}}>
+								<LogoGithub className='w-5 h-5' />
+							</Button>
+						</div>
 						<p className="text-center mt-3 text-gray-900 dark:text-gray-300 text-sm">
 							{"Already have an account?"}
-							<NextLink href='/auth/login'>
+							<NextLink href='/'>
 								<a className="text-primary underline"> Login</a>
 							</NextLink>
 						</p>
