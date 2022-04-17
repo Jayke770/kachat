@@ -77,7 +77,7 @@ export default function Posts({ tab, user, posts }) {
                                     alt='user profile' />
                             </NextLink>
                             <div
-                                className='w-full rounded-3xl flex items-center px-4 bg-gray-100 dark:bg-zinc-800 cursor-pointer transition-all hover:bg-gray-200/70 dark:hover:bg-zinc-700/70'>
+                                className='w-full rounded-3xl flex items-center px-4 bg-gray-100 dark:bg-zinc-800 cursor-pointer transition-all hover:bg-gray-200/70 dark:hover:bg-zinc-700/50'>
                                 <span className='text-base text-gray-500 dark:text-zinc-500'>Sample text Here</span>
                             </div>
                         </div>

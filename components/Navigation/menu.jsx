@@ -18,8 +18,7 @@ export default function Menu({ menu, setmenu }) {
             opened={menu}
             onBackdropClick={() => setmenu(false)}
             colors={{ bg: 'bg-gray-200 dark:bg-black' }}
-            side="right"
-            size='w-96 h-screen'>
+            side="right">
             <div className="dark:bg-page-material-dark bg-gray-200 h-full">
                 <Navbar
                     title='Menu'
