@@ -7,12 +7,15 @@ import Mode from '../../lib/Theme/setDarkmode'
 export default function Menu({ menu, setmenu }) {
     const { theme, updatetheme } = Theme()
     const { thememode, updatethememode } = Mode()
-    const [darkmode, setdarkmode] = useState(thememode)
+    const [darkmode, setdarkmode] = useState('')
     const [signout, setsignout] = useState(false)
     const changemode = (val) => {
         setdarkmode(val)
         updatethememode(val)
     }
+    useEffect(() => {
+        setdarkmode(thememode)
+    }, [darkmode, thememode])
     return (
         <Panel
             opened={menu}
@@ -65,7 +68,7 @@ export default function Menu({ menu, setmenu }) {
                         media={
                             <Radio
                                 checked={darkmode === 'dark'}
-                                readOnly />
+                                onChange={() => changemode(thememode === 'dark' ? 'default' : 'dark')} />
                         }
                         chevron={false}
                         title="Dark Mode"

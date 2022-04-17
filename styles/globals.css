@@ -10,6 +10,14 @@
 ::-webkit-scrollbar-thumb {
 	@apply dark:bg-primary-dark bg-primary-light cursor-pointer;
 }
+/*hide scrollar in posts*/ 
+#posts::-webkit-scrollbar{
+    @apply hidden;
+}
+#posts {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 /* animate.css duration */
 
 .ms-200 {
