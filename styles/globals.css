@@ -10,6 +10,42 @@
 ::-webkit-scrollbar-thumb {
 	@apply dark:bg-primary-dark bg-primary-light cursor-pointer;
 }
+/* animate.css duration */
+
+.ms-200 {
+    --animate-duration: 200ms;
+}
+
+.ms-300 {
+    --animate-duration: 300ms;
+}
+
+.ms-400 {
+    --animate-duration: 400ms;
+}
+
+.ms-500 {
+    --animate-duration: 500ms;
+}
+
+.ms-600{
+    --animate-duration: 600ms
+}
+
+.ms-700{
+    --animate-duration: 700ms
+}
+.ms-800{
+    --animate-duration: 800ms
+}
+.ms-900{
+    --animate-duration: 900ms
+}
+.ms-slow{
+    --animate-duration: 2000ms
+}
+
+/* end of animate.css duration*/
 /* Main Shape 1 */
 .custom-shape-divider-bottom-1647246727 {
     position: absolute;
@@ -41,4 +77,11 @@
         width: calc(191% + 1.3px);
         height: 210px;
     }
+}
+/* Sweetalert */
+.swal2-popup, .swal2-popup.swal2-toast {
+    @apply dark:bg-block-strong-dark dark:text-neutral-300;
+}
+.swal2-timer-progress-bar {
+    @apply dark:bg-zinc-700;
 }

@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import Fileupload from '../../../lib/Posts/fileupload'
 export default function Posts({ tab, user, posts }) {
     const [data, setdata] = useState({
         posts: posts,
@@ -48,9 +49,9 @@ export default function Posts({ tab, user, posts }) {
     return (
         <div
             id='posts'
-            className={`${tab === 'posts' ? 'flex animate__animated animate__fadeIn' : 'hidden'} flex-col overflow-auto lg:px-15 p-2 w-full h-[calc(100vh-104px)] lg:h-[calc(100vh-64px)] lg:col-span-2`}>
+            className={`${tab === 'posts' ? 'flex animate__animated animate__fadeIn' : 'hidden'} flex-col overflow-auto lg:px-15 p-1.5 w-full h-[calc(100vh-104px)] lg:h-[calc(100vh-64px)] lg:col-span-2`}>
             <InfiniteScroll
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-3"
                 dataLength={data.posts.length}
                 scrollableTarget="posts"
                 hasMore={data.more}
@@ -66,7 +67,25 @@ export default function Posts({ tab, user, posts }) {
                         footer={
                             <div className='grid grid-cols-3 gap-2'>
                                 <Button
-                                    clear>Photos</Button>
+                                    clear>
+                                    Photos
+                                    <input
+                                        className='absolute file:cursor-pointer opacity-0 block w-full'
+                                        accept='image/*'
+                                        type="file"
+                                        multiple
+                                        onChange={(e) => Fileupload(e, 'image')} />
+                                </Button>
+                                <Button
+                                    clear>
+                                    File
+                                    <input
+                                        className='absolute file:cursor-pointer opacity-0 block w-full'
+                                        type="file"
+                                        multiple
+                                        onChange={(e) => Fileupload(e, 'file')}
+                                    />
+                                </Button>
                             </div>
                         }>
                         <div className='flex gap-2'>
