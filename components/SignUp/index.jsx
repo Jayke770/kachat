@@ -22,17 +22,21 @@ export default function SignupForm() {
 						margin='m-0'
 						hairlines={false}>
 						<ListInput
+							disabled
 							floatingLabel
 							label='Name' />
 						<ListInput
+							disabled
 							floatingLabel
 							type='email'
 							label='Email' />
 						<ListInput
+							disabled
 							floatingLabel
 							type='password'
 							label='Password' />
 						<ListInput
+							disabled
 							floatingLabel
 							type='password'
 							label='Confirm Password' />
