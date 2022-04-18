@@ -7,7 +7,7 @@ export default function LoginForm() {
         <>
             <div className="h-screen w-full">
                 <div className="transition-all h-full w-full flex flex-col md:grid md:grid-cols-2 py-3 gap-2 ">
-                    <div className="transition-all w-full flex flex-col justify-center md:items-start md:pl-24 lg:pl-28  items-center gap-2 py-10">
+                    <div className="transition-all w-full flex flex-col justify-center md:items-start md:pl-24 lg:pl-28 items-center gap-2 py-10 mt-[3vh]">
                         <h1
                             data-aos="fade-up"
                             data-aos-duration="500"
@@ -17,7 +17,7 @@ export default function LoginForm() {
                             data-aos-duration="1000"
                             className="font-normal pl-0.5">Meet friends around the world</p>
                     </div>
-                    <div className="transition-all md:justify-center lg:justify-start z-20 p-3 md:pl-20">
+                    <div className="transition-all md:justify-center lg:justify-start z-20 p-3 md:pl-20 mt-[3vh]">
                         <div className="flex w-full justify-center items-center h-full">
                             <Card
                                 data-aos="fade-up"
@@ -29,13 +29,13 @@ export default function LoginForm() {
                                         alt="kachat icon"
                                         src="/icon.png" />
                                 </div>
-                                <Block className="text-center">Continue with your favorite social networks</Block>
-                                <div className="flex flex-col gap-3 p-2 md:p-4 mt-5">
+                                <Block className="text-center text-sm">Continue with your favorite social networks</Block>
+                                <div className="flex flex-col gap-3 p-2 md:p-4">
                                     <Button
                                         rounded
                                         large
                                         onClick={() => signIn('google', { callbackUrl: '/home' })}
-                                        className="grid grid-cols-5 gap-3"
+                                        className="grid grid-cols-6 gap-3"
                                         colors={{
                                             text: 'text-red-500',
                                             border: 'border-red-500',
@@ -44,13 +44,13 @@ export default function LoginForm() {
                                             activeBgDark: 'active:bg-red-600',
                                         }}>
                                         <LogoGoogle className='w-5 h-5 ml-2' />
-                                        <span className="col-span-4 w-full text-left">Continue with Google</span>
+                                        <span className="col-span-5 w-full text-left">Continue with Google</span>
                                     </Button>
                                     <Button
                                         rounded
                                         large
                                         onClick={() => signIn('facebook', { callbackUrl: '/home' })}
-                                        className="grid grid-cols-5 gap-3"
+                                        className="grid grid-cols-6 gap-3"
                                         colors={{
                                             text: 'text-blue-700',
                                             border: 'border-blue-700',
@@ -59,13 +59,13 @@ export default function LoginForm() {
                                             activeBgDark: 'active:bg-blue-700',
                                         }}>
                                         <LogoFacebook className='w-5 h-5 ml-2' />
-                                        <span className="col-span-4 w-full text-left">Continue with Faceboook</span>
+                                        <span className="col-span-5 w-full text-left">Continue with Faceboook</span>
                                     </Button>
                                     <Button
                                         rounded
                                         large
                                         onClick={() => signIn('github', { callbackUrl: '/home' })}
-                                        className="grid grid-cols-5 gap-3"
+                                        className="grid grid-cols-6 gap-3"
                                         colors={{
                                             text: 'text-zinc-600',
                                             border: 'border-zinc-600',
@@ -74,7 +74,7 @@ export default function LoginForm() {
                                             activeBgDark: 'active:bg-zinc-600',
                                         }}>
                                         <LogoGithub className='w-5 h-5 m-2' />
-                                        <span className="col-span-4 w-full text-left">Continue with Github</span>
+                                        <span className="col-span-5 w-full text-left">Continue with Github</span>
                                     </Button>
                                 </div>
                             </Card>
