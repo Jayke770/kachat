@@ -41,6 +41,7 @@ export default function LoginForm() {
                                             bg: 'bg-red-500',
                                             activeBg: 'active:bg-red-500',
                                             activeBgDark: 'active:bg-red-600',
+                                            touchRipple: 'touch-ripple-red-600'
                                         }}>
                                         <LogoGoogle className='w-5 h-5 ml-2' />
                                         <span className="col-span-5 w-full text-left">Continue with Google</span>
@@ -56,6 +57,7 @@ export default function LoginForm() {
                                             bg: 'bg-blue-700',
                                             activeBg: 'active:bg-blue-700',
                                             activeBgDark: 'active:bg-blue-700',
+                                            touchRipple: 'touch-ripple-blue-700'
                                         }}>
                                         <LogoFacebook className='w-5 h-5 ml-2' />
                                         <span className="col-span-5 w-full text-left">Continue with Faceboook</span>
@@ -71,6 +73,7 @@ export default function LoginForm() {
                                             bg: 'bg-zinc-600',
                                             activeBg: 'active:bg-zinc-600',
                                             activeBgDark: 'active:bg-zinc-600',
+                                            touchRipple: 'touch-ripple-zinc-600'
                                         }}>
                                         <LogoGithub className='w-5 h-5 m-2' />
                                         <span className="col-span-5 w-full text-left">Continue with Github</span>

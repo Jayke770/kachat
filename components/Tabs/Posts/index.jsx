@@ -25,7 +25,7 @@ export default function Posts({ tab, user, posts }) {
                 viewedposts.push(data.posts[i].id)
             }
             //get new posts
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 1; i++) {
                 newposts.push({
                     id: faker.datatype.uuid(),
                     image: faker.image.avatar(),

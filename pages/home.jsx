@@ -50,7 +50,7 @@ export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
     if (session) {
         let posts = []
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 1; i++) {
             posts.push({
                 id: faker.datatype.uuid(),
                 image: faker.image.avatar(),
