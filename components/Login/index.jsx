@@ -1,6 +1,5 @@
-import { Card, List, ListInput, Icon, Button, Block } from "konsta/react"
-import NextLink from 'next/link'
-import { LogoGoogle, ChatBubble2, LogoFacebook, LogoGithub } from 'framework7-icons/react'
+import { Card, Button, Block } from "konsta/react"
+import { LogoGoogle, LogoFacebook, LogoGithub } from 'framework7-icons/react'
 import { signIn } from 'next-auth/react'
 export default function LoginForm() {
     return (
