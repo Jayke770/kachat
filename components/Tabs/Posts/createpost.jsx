@@ -15,12 +15,6 @@ export default function CreatePost() {
         body: "",
         placeholder: true
     })
-    useEffect(() => {
-        setemojipicker({
-            ...emojipicker,
-            theme: thememode === 'dark' ? 'dark' : 'light'
-        })
-    }, [])
     const postBody = (e) => {
         setpost({ ...post, body: sanitizeHtml(e.target.value) })
     }
@@ -80,7 +74,7 @@ export default function CreatePost() {
                     }>
                     <div className="relative">
                         {/* Show placeholder when post body is empty */}
-                        {post.body === "" && <span className='animate__animated animate__fadeInUp ms-300 absolute text-xl dark:text-zinc-400 text-zinc-500 p-2'>Hey!, What's on your mind?</span>}
+                        {post.body === "" && <span className='animate__animated animate__fadeInUp ms-300 pointer-events-none absolute text-xl dark:text-zinc-400 text-zinc-500 p-2'>{"Hey!, What's on your mind?"}</span>}
                         <ContentEditable
                             className="post-body p-2 overflow-auto min-h-[50vh] max-h-[80vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all"
                             onChange={postBody}
@@ -98,7 +92,7 @@ export default function CreatePost() {
                                     touchRipple: 'touch-ripple-gray-500'
                                 }}
                                 className="!w-auto emoji"
-                                onClick={() => setemojipicker({ ...emojipicker, target: '.emoji', opened: true })}>
+                                onClick={() => setemojipicker({ ...emojipicker, target: '.emoji', opened: true, theme: thememode === 'dark' ? 'dark' : 'light' })}>
                                 <Smiley className="w-7 h-7 " />
                             </Button>
                         </div>
