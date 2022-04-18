@@ -4,11 +4,11 @@ import FacebookProvider from 'next-auth/providers/facebook'
 import GitHubProvider from "next-auth/providers/github"
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import clientPromise from "../../../lib/mongodb"
-import Users from '../../../lib/Users'
 import moment from "moment"
 import { nanoid } from 'nanoid'
 import { uniqueNamesGenerator as generateUsername, adjectives, colors, animals } from 'unique-names-generator'
 import { ObjectId } from "mongodb"
+import mongoose from 'mongoose'
 export default NextAuth({
     secret: process.env.SECRET,
     providers: [
@@ -42,6 +42,8 @@ export default NextAuth({
     },
     events: {
         async signIn({ user, account, profile, isNewUser }) {
+            await mongoose.connect(process.env.MONGODB_URI)
+            const Users = mongoose.connection.db.collection("users")
             if (isNewUser) {
                 const username = `${generateUsername({ dictionaries: [adjectives, colors, animals], length: 2 })}-${nanoid(3)}`
                 await Users.updateOne({ _id: { $eq: ObjectId(user.id) } }, {
@@ -63,6 +65,8 @@ export default NextAuth({
             }
         },
         async signOut({ session, token }) {
+            await mongoose.connect(process.env.MONGODB_URI)
+            const Users = mongoose.connection.db.collection("users")
             await Users.updateOne({ _id: { $eq: ObjectId(token.sub) } }, {
                 $set: {
                     lastSeen: moment().format(),
