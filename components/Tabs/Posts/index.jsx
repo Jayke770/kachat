@@ -242,7 +242,9 @@ export default function Posts({ tab, user, posts }) {
             </div>
 
             {/* Create Post */}
-            <CreatePost postFiles={postFiles} />
+            <CreatePost
+                postFiles={postFiles}
+                setpostFiles={setpostFiles} />
         </>
     )
 }

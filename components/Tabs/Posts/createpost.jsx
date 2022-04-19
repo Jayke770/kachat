@@ -1,14 +1,14 @@
 import "swiper/css"
 import 'emoji-mart/css/emoji-mart.css'
 import { useState } from 'react'
-import { Card, Button, Popover } from "konsta/react"
-import { Xmark, Smiley, Plus } from 'framework7-icons/react'
+import { Card, Button, Popover, Link } from "konsta/react"
+import { Xmark, Smiley, Plus, XmarkCircleFill } from 'framework7-icons/react'
 import { Picker } from 'emoji-mart'
 import Mode from '../../../lib/Theme/setDarkmode'
 import ContentEditable from 'react-contenteditable'
 import sanitizeHtml from "sanitize-html"
 import { Swiper, SwiperSlide } from 'swiper/react'
-export default function CreatePost({ postFiles: { type, files } }) {
+export default function CreatePost({ postFiles: { type, files }, setpostFiles }) {
     const { thememode, updatethememode } = Mode()
     const [emojipicker, setemojipicker] = useState({ target: undefined, opened: false, theme: undefined })
     const [post, setpost] = useState({
@@ -104,11 +104,27 @@ export default function CreatePost({ postFiles: { type, files } }) {
                                     {/* Preview selected files if the file type is image */}
                                     {type === 'image' && files.length > 0 && files.map((file, i) => (
                                         <SwiperSlide key={i}>
-                                            <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 rounded-md mb-2'>
+                                            <div className='group animate__animated animate__fadeInRight ms-300 relative cursor-pointer h-13 w-13 rounded-md mb-2'>
                                                 <img
                                                     alt="file preview"
                                                     className='object-cover w-full h-full rounded-md top-0 right-0'
                                                     src={file} />
+                                                <div className="animate__animated animate__fadeInDown ms-300 group-hover:flex hidden absolute top-0 rounded-md justify-center items-center h-full w-full bg-zinc-700/50 dark:bg-zinc-900/60">
+                                                    <Button
+                                                        colors={{
+                                                            text: 'text-red-500',
+                                                            border: 'border-red-500',
+                                                            bg: 'bg-red-500',
+                                                            activeBg: 'active:bg-red-500',
+                                                            activeBgDark: 'active:bg-red-600',
+                                                            touchRipple: 'touch-ripple-red-500/70'
+                                                        }}
+                                                        clear
+                                                        rounded
+                                                        large>
+                                                        <XmarkCircleFill className="w-6 h-6 text-red-500" />
+                                                    </Button>
+                                                </div>
                                             </div>
                                         </SwiperSlide>
                                     ))}
