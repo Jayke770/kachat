@@ -96,6 +96,7 @@ export default function CreatePost({ postFiles: { type, files } }) {
                                         <SwiperSlide key={i}>
                                             <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 shadow-lg rounded-md mb-2'>
                                                 <img
+                                                    alt="file preview"
                                                     className='object-cover w-full h-full rounded-md top-0 right-0'
                                                     src={file} />
                                             </div>
