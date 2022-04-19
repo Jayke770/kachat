@@ -9,7 +9,9 @@ import Posts from '../components/Tabs/Posts'
 import Friends from '../components/Tabs/Friends'
 import faker from '@faker-js/faker'
 import moment from 'moment'
+import Ws from '../lib/ws'
 export default function Index({ data: { user }, posts }) {
+    const { socket } = Ws()
     const [tab, settab] = useState('posts')
     return (
         <>
@@ -22,9 +24,9 @@ export default function Index({ data: { user }, posts }) {
 
             {/* Main */}
             <div className='transition-all grid w-full lg:grid-cols-4'>
-                <FindFriends tab={tab} />
-                <Posts tab={tab} user={user} posts={posts} />
-                <Friends tab={tab} />
+                <FindFriends tab={tab} socket={socket} />
+                <Posts tab={tab} user={user} posts={posts} socket={socket} />
+                <Friends tab={tab} socket={socket} />
             </div>
 
             {/* Tabbar only visible when media width is less than 1024px */}
