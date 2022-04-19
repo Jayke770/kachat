@@ -14,12 +14,11 @@ export default function CreatePost({ postFiles: { type, files } }) {
     const [post, setpost] = useState({
         body: "",
         placeholder: true,
-        imageStyle: 'slide', // tiled or slided
+        imageStyle: 'slide', // tiled or slide
     })
     const postBody = (e) => {
         setpost({ ...post, body: sanitizeHtml(e.target.value) })
     }
-    console.log(type, files)
     return (
         <>
             <div
@@ -77,24 +76,35 @@ export default function CreatePost({ postFiles: { type, files } }) {
                     <div className="relative">
                         {/* Show placeholder when post body is empty */}
                         {post.body === "" && <span className='animate__animated animate__fadeInUp ms-300 pointer-events-none absolute text-xl dark:text-zinc-400 text-zinc-500 p-2'>{"Hey!, What's on your mind?"}</span>}
+
                         <ContentEditable
                             className="post-body p-2 overflow-auto h-[40vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all"
                             onChange={postBody}
                             html={post.body} />
+
                         <div className="w-full">
                             <div className='pr-12'>
                                 <Swiper
-                                    spaceBetween={2}
-                                    slidesPerView={6}
+                                    spaceBetween={5}
+                                    slidesPerView={5}
                                     breakpoints={{
-                                        500: {
+                                        320: {
+                                            spaceBetween: 3,
+                                            slidesPerView: 4
+                                        },
+                                        480: {
+                                            spaceBetween: 5,
+                                            slidesPerView: 6
+                                        },
+                                        720: {
+                                            spaceBetween: 5,
                                             slidesPerView: 8
                                         }
                                     }}>
                                     {/* Preview selected files if the file type is image */}
                                     {type === 'image' && files.length > 0 && files.map((file, i) => (
                                         <SwiperSlide key={i}>
-                                            <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 shadow-lg rounded-md mb-2'>
+                                            <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 rounded-md mb-2'>
                                                 <img
                                                     alt="file preview"
                                                     className='object-cover w-full h-full rounded-md top-0 right-0'
@@ -105,7 +115,7 @@ export default function CreatePost({ postFiles: { type, files } }) {
                                     <SwiperSlide>
                                         <Button
                                             clear
-                                            className='animate__animated animate__fadeInRight ms-300 cursor-pointer !h-13 !w-13 flex justify-center items-center shadow-lg rounded-md mb-2'>
+                                            className='animate__animated animate__fadeInRight ms-300 cursor-pointer !h-13 !w-13 flex justify-center items-center rounded-md mb-2'>
                                             <Plus className="w-7 h-7" />
                                         </Button>
                                     </SwiperSlide>
