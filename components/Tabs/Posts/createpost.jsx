@@ -1,7 +1,7 @@
 import "swiper/css"
 import 'emoji-mart/css/emoji-mart.css'
 import { useState } from 'react'
-import { Card, Button, Popover, Link } from "konsta/react"
+import { Card, Button, Popover } from "konsta/react"
 import { Xmark, Smiley, Plus, XmarkCircleFill } from 'framework7-icons/react'
 import { Picker } from 'emoji-mart'
 import Mode from '../../../lib/Theme/setDarkmode'
@@ -18,6 +18,9 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
     })
     const postBody = (e) => {
         setpost({ ...post, body: sanitizeHtml(e.target.value) })
+    }
+    const removeFile = (id) => {
+        console.log(id)
     }
     return (
         <>
@@ -108,7 +111,7 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
                                                 <img
                                                     alt="file preview"
                                                     className='object-cover w-full h-full rounded-md top-0 right-0'
-                                                    src={file} />
+                                                    src={file.file} />
                                                 <div className="animate__animated animate__fadeInDown ms-300 group-hover:flex hidden absolute top-0 rounded-md justify-center items-center h-full w-full bg-zinc-700/50 dark:bg-zinc-900/60">
                                                     <Button
                                                         colors={{
@@ -121,7 +124,8 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
                                                         }}
                                                         clear
                                                         rounded
-                                                        large>
+                                                        large
+                                                        onClick={() => removeFile(file.id)}>
                                                         <XmarkCircleFill className="w-6 h-6 text-red-500" />
                                                     </Button>
                                                 </div>
