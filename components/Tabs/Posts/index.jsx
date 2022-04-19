@@ -17,6 +17,7 @@ export default function Posts({ tab, user, posts }) {
         viewed: [],
         more: true
     })
+    const stories = Array.from({ length: 10 })
     const loadposts = () => {
         let newposts = data.posts, viewedposts = []
         setTimeout(() => {
@@ -51,7 +52,7 @@ export default function Posts({ tab, user, posts }) {
         <>
             <div
                 id='posts'
-                className={`${tab === 'posts' ? 'flex animate__animated animate__fadeIn' : 'hidden'} flex-col overflow-auto lg:px-15 p-1.5 w-full h-[calc(100vh-104px)] lg:h-[calc(100vh-64px)] lg:col-span-2`}>
+                className={`${tab === 'posts' ? 'flex animate__animated animate__fadeIn' : 'hidden'} flex-col overflow-auto lg:px-15 w-full h-[calc(100vh-104px)] lg:h-[calc(100vh-64px)] lg:col-span-2`}>
                 <InfiniteScroll
                     className="flex flex-col gap-3"
                     dataLength={data.posts.length}
@@ -61,8 +62,40 @@ export default function Posts({ tab, user, posts }) {
                     endMessage={<span className='text-center'>No more posts</span>}
                     loader={<span className='text-center'>Please wait...</span>}>
 
+                    {/* Stories */}
+                    <div className='w-full px-1 mt-2 py-2'>
+                        <Swiper
+                            spaceBetween={5}
+                            slidesPerView={3}
+                            breakpoints={{
+                                640: {
+                                    slidesPerView: 4
+                                },
+                                768: {
+                                    slidesPerView: 6
+                                },
+                                1024: {
+                                    slidesPerView: 3
+                                },
+                                1280: {
+                                    slidesPerView: 4
+                                }
+                            }}>
+                            {stories.map((story, i) => (
+                                <SwiperSlide
+                                    key={i}>
+                                    <Card
+                                        margin='m-0'
+                                        className='h-44 min-w-[100px] w-full !rounded-lg flex justify-center items-center p-0'>
+                                        {i}
+                                    </Card>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </div>
+
                     {/* Create Post */}
-                    <div className='w-full'>
+                    <div className='w-full px-3'>
                         <Card
                             className='!w-full !rounded-lg mb-2'
                             margin='m-0'
@@ -114,7 +147,7 @@ export default function Posts({ tab, user, posts }) {
 
                     {/* Posts */}
                     {data.posts.map((post, i) => (
-                        <div key={i} className='w-full'>
+                        <div key={i} className='w-full px-3'>
                             <Card
                                 outline
                                 className='!w-full !rounded-lg'
