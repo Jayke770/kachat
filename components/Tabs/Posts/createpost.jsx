@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, Button, Chip, Badge, Block, Popover } from "konsta/react"
-import { Xmark, Smiley } from 'framework7-icons/react'
+import { Xmark, Smiley, TrashCircleFill, TrashFill } from 'framework7-icons/react'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import Theme from '../../../lib/Theme/setTheme'
@@ -13,7 +13,8 @@ export default function CreatePost() {
     const [emojipicker, setemojipicker] = useState({ target: undefined, opened: false, theme: undefined })
     const [post, setpost] = useState({
         body: "",
-        placeholder: true
+        placeholder: true,
+        imageStyle: 'slide', // tiled or slided
     })
     const postBody = (e) => {
         setpost({ ...post, body: sanitizeHtml(e.target.value) })
@@ -76,10 +77,30 @@ export default function CreatePost() {
                         {/* Show placeholder when post body is empty */}
                         {post.body === "" && <span className='animate__animated animate__fadeInUp ms-300 pointer-events-none absolute text-xl dark:text-zinc-400 text-zinc-500 p-2'>{"Hey!, What's on your mind?"}</span>}
                         <ContentEditable
-                            className="post-body p-2 overflow-auto min-h-[50vh] max-h-[80vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all"
+                            className="post-body p-2 overflow-auto h-[50vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all"
                             onChange={postBody}
                             html={post.body} />
-                        <div className="absolute right-0 bottom-0">
+                        <div className="w-full">
+                            <div className='flex flex-row gap-3'>
+                                <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 relative shadow-lg rounded-md'>
+                                    <img
+                                        className='object-cover w-full h-full rounded-md top-0 right-0'
+                                        src={`https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`} />
+
+                                </div>
+                                <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 relative shadow-lg rounded-md'>
+                                    <img
+                                        className='object-cover w-full h-full rounded-md top-0 right-0'
+                                        src={`https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`} />
+
+                                </div>
+                                <div className='animate__animated animate__fadeInRight ms-300 cursor-pointer h-13 w-13 relative shadow-lg rounded-md'>
+                                    <img
+                                        className='object-cover w-full h-full rounded-md top-0 right-0'
+                                        src={`https://source.unsplash.com/random/?img=${Math.floor(Math.random() * 99999)}`} />
+
+                                </div>
+                            </div>
                             <Button
                                 clear
                                 rounded
@@ -91,7 +112,7 @@ export default function CreatePost() {
                                     activeBgDark: 'active:bg-gray-600',
                                     touchRipple: 'touch-ripple-gray-500'
                                 }}
-                                className="!w-auto emoji"
+                                className="animate__animated animate__fadeInUp ms-300 !w-auto emoji absolute right-0 bottom-0"
                                 onClick={() => setemojipicker({ ...emojipicker, target: '.emoji', opened: true, theme: thememode === 'dark' ? 'dark' : 'light' })}>
                                 <Smiley className="w-7 h-7 " />
                             </Button>
