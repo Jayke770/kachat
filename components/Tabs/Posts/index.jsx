@@ -1,3 +1,5 @@
+import 'swiper/css'
+import 'swiper/css/pagination'
 import { useState, useEffect } from 'react'
 import { Card, Button, Link, Preloader } from 'konsta/react'
 import { Ellipsis, HeartFill, Heart, ChatBubbleText, ArrowshapeTurnUpRight } from 'framework7-icons/react'
@@ -8,14 +10,16 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import CreatePost from '../../../components/Tabs/Posts/createpost'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import Fileupload from '../../../lib/Posts/fileupload'
+import CheckFile from '../../../lib/Posts/checkFIle'
 export default function Posts({ tab, user, posts }) {
     const [data, setdata] = useState({
         posts: posts,
         viewed: [],
         more: true
+    })
+    const [postFiles, setpostFiles] = useState({
+        type: undefined,
+        files: undefined
     })
     const stories = Array.from({ length: 10 })
     const loadposts = () => {
@@ -102,6 +106,7 @@ export default function Posts({ tab, user, posts }) {
                             footer={
                                 <div className='grid grid-cols-2 gap-2'>
                                     <Button
+                                        rounded
                                         clear>
                                         Photos
                                         <input
@@ -109,16 +114,30 @@ export default function Posts({ tab, user, posts }) {
                                             accept='image/*'
                                             type="file"
                                             multiple
-                                            onChange={(e) => Fileupload(e, 'image')} />
+                                            onChange={(e) => {
+                                                CheckFile(e, 'image').then((res) => {
+                                                    setpostFiles({ type: 'image', files: res })
+                                                    document.querySelector(".createpost").classList.add("flex", "animate__fadeIn")
+                                                    document.querySelector(".createpost").classList.remove("hidden")
+                                                    setTimeout(() => {
+                                                        document.querySelector(".createpost").classList.remove("animate__fadeIn")
+                                                    }, 500)
+                                                })
+                                            }} />
                                     </Button>
                                     <Button
+                                        rounded
                                         clear>
                                         File
                                         <input
                                             className='absolute file:cursor-pointer opacity-0 block w-full'
                                             type="file"
                                             multiple
-                                            onChange={(e) => Fileupload(e, 'file')}
+                                            onChange={(e) => {
+                                                CheckFile(e, 'file').then((res) => {
+
+                                                })
+                                            }}
                                         />
                                     </Button>
                                 </div>
@@ -223,7 +242,7 @@ export default function Posts({ tab, user, posts }) {
             </div>
 
             {/* Create Post */}
-            <CreatePost />
+            <CreatePost postFiles={postFiles} />
         </>
     )
 }
