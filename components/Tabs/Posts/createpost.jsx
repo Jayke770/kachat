@@ -11,16 +11,7 @@ import Mode from '../../../lib/Theme/setDarkmode'
 import CheckFile from '../../../lib/Posts/checkFIle'
 export default function CreatePost() {
     const { thememode } = Mode()
-    const [emojipicker, setemojipicker] = useState({ target: undefined, opened: false, theme: undefined })
-    const [post, setpost] = useState({
-        body: "",
-        placeholder: true,
-        imageStyle: 'slide', // tiled or slide, 
-        photos: undefined
-    })
-    useEffect(() => {
-        setemojipicker({ ...emojipicker, theme: thememode === 'dark' ? 'dark' : 'auto' })
-    }, [thememode, post])
+    const [post, setpost] = useState({ photos: undefined })
 
     //remove selected file 
     const removeFile = (id, name) => {
@@ -34,6 +25,7 @@ export default function CreatePost() {
             }
         }
     }
+    console.log(post)
     return (
         <>
             <div
@@ -88,15 +80,11 @@ export default function CreatePost() {
                             </Button>
                         </div>
                     }>
-                    <div className="relative">
-                        {/* Show placeholder when post body is empty */}
-                        {post.body === "" && <span className='animate__animated animate__fadeInUp ms-300 pointer-events-none absolute text-xl dark:text-zinc-400 text-zinc-500 p-2'>{"Hey!, What's on your mind?"}</span>}
-
-                        <ContentEditable
-                            className="post-body p-2 overflow-auto h-[40vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all"
-                            onChange={(e) => setpost({ ...post, body: sanitizeHtml(e.target.value) })}
-                            html={post.body} />
-
+                    <div className="w-full">
+                        <textarea
+                            placeholder="Hello World!"
+                            className="post-body resize-none p-2 w-full bg-transparent overflow-auto h-[40vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all">
+                        </textarea>
                         <div className="w-full">
                             <div className='pr-12'>
                                 <Swiper
@@ -170,43 +158,10 @@ export default function CreatePost() {
                                     </SwiperSlide>
                                 </Swiper>
                             </div>
-                            <Button
-                                clear
-                                rounded
-                                colors={{
-                                    text: 'text-gray-500',
-                                    border: 'border-gray-500',
-                                    bg: 'bg-red-500',
-                                    activeBg: 'active:bg-gray-500',
-                                    activeBgDark: 'active:bg-gray-600',
-                                    touchRipple: 'touch-ripple-gray-500'
-                                }}
-                                className="animate__animated animate__fadeInUp ms-300 !w-auto emoji absolute right-0 bottom-0"
-                                onClick={() => setemojipicker({ ...emojipicker, target: '.emoji', opened: true, theme: thememode === 'dark' ? 'dark' : 'light' })}>
-                                <Smiley className="w-7 h-7 " />
-                            </Button>
                         </div>
                     </div>
                 </Card>
-            </div >
-
-            {/* Emoji picker */}
-            <Popover
-                opened={emojipicker.opened}
-                target={emojipicker.target}
-                size="w-auto"
-                onBackdropClick={() => setemojipicker({ ...emojipicker, target: undefined, opened: false })
-                }>
-                <Picker
-                    title='Pick your emoji…'
-                    emoji='point_up'
-                    set="facebook"
-                    theme={emojipicker.theme}
-                    onSelect={(e) => {
-                        setpost({ ...post, body: `${post.body}${e.native}` })
-                        setemojipicker({ ...emojipicker, target: undefined, opened: false })
-                    }} />
-            </Popover >
+            </div>
         </>
     )
 }

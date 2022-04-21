@@ -123,7 +123,7 @@ export default function Posts({ tab, user, posts }) {
                                 <div
                                     className='w-full rounded-3xl flex items-center px-4 bg-gray-100 dark:bg-zinc-800 cursor-pointer transition-all hover:bg-gray-200/70 dark:hover:bg-zinc-700/50'
                                     onClick={openCreatepost}>
-                                    <span className='text-base text-gray-500 dark:text-zinc-500'>Say Hello World!</span>
+                                    <span className='text-base text-gray-500 dark:text-zinc-500'>Hello World!</span>
                                 </div>
                             </div>
                         </Card>
