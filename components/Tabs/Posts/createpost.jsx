@@ -1,26 +1,38 @@
 import "swiper/css"
 import 'emoji-mart/css/emoji-mart.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Card, Button, Popover } from "konsta/react"
 import { Xmark, Smiley, Plus, XmarkCircleFill } from 'framework7-icons/react'
 import { Picker } from 'emoji-mart'
-import Mode from '../../../lib/Theme/setDarkmode'
 import ContentEditable from 'react-contenteditable'
 import sanitizeHtml from "sanitize-html"
 import { Swiper, SwiperSlide } from 'swiper/react'
-export default function CreatePost({ postFiles: { type, files }, setpostFiles }) {
-    const { thememode, updatethememode } = Mode()
+import Mode from '../../../lib/Theme/setDarkmode'
+import CheckFile from '../../../lib/Posts/checkFIle'
+export default function CreatePost() {
+    const { thememode } = Mode()
     const [emojipicker, setemojipicker] = useState({ target: undefined, opened: false, theme: undefined })
     const [post, setpost] = useState({
         body: "",
         placeholder: true,
-        imageStyle: 'slide', // tiled or slide
+        imageStyle: 'slide', // tiled or slide, 
+        photos: undefined
     })
-    const postBody = (e) => {
-        setpost({ ...post, body: sanitizeHtml(e.target.value) })
-    }
-    const removeFile = (id) => {
-        console.log(id)
+    useEffect(() => {
+        setemojipicker({ ...emojipicker, theme: thememode === 'dark' ? 'dark' : 'auto' })
+    }, [thememode, post])
+
+    //remove selected file 
+    const removeFile = (id, name) => {
+        let tempFiles = post.photos
+        //remove file from the post state
+        for (let i = 0; i < tempFiles.length; i++) {
+            if (tempFiles[i].id === id) {
+                tempFiles.splice(i, 1)
+                setpost({ ...post, photos: tempFiles })
+                break
+            }
+        }
     }
     return (
         <>
@@ -82,7 +94,7 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
 
                         <ContentEditable
                             className="post-body p-2 overflow-auto h-[40vh] text-xl text-gray-800 dark:text-gray-300 rounded-md outline-none transition-all"
-                            onChange={postBody}
+                            onChange={(e) => setpost({ ...post, body: sanitizeHtml(e.target.value) })}
                             html={post.body} />
 
                         <div className="w-full">
@@ -104,15 +116,16 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
                                             slidesPerView: 8
                                         }
                                     }}>
+
                                     {/* Preview selected files if the file type is image */}
-                                    {type === 'image' && files.length > 0 && files.map((file, i) => (
+                                    {post.photos && post.photos.map((file, i) => (
                                         <SwiperSlide key={i}>
-                                            <div className='group animate__animated animate__fadeInRight ms-300 relative cursor-pointer h-13 w-13 rounded-md mb-2'>
+                                            <div className='group animate__animated animate__fadeInRight ms-300 relative cursor-pointer h-13 w-13 shadow-md rounded-md mb-2'>
                                                 <img
                                                     alt="file preview"
                                                     className='object-cover w-full h-full rounded-md top-0 right-0'
                                                     src={file.file} />
-                                                <div className="animate__animated animate__fadeInDown ms-300 group-hover:flex hidden absolute top-0 rounded-md justify-center items-center h-full w-full bg-zinc-700/50 dark:bg-zinc-900/60">
+                                                <div className="animate__animated animate__fadeInDown ms-300 group-hover:flex hidden absolute top-0 shadow-md rounded-md justify-center items-center h-full w-full bg-zinc-700/50 dark:bg-zinc-900/60">
                                                     <Button
                                                         colors={{
                                                             text: 'text-red-500',
@@ -125,17 +138,33 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
                                                         clear
                                                         rounded
                                                         large
-                                                        onClick={() => removeFile(file.id)}>
+                                                        onClick={() => removeFile(file.id, file.name)}>
                                                         <XmarkCircleFill className="w-6 h-6 text-red-500" />
                                                     </Button>
                                                 </div>
                                             </div>
                                         </SwiperSlide>
                                     ))}
+
                                     <SwiperSlide>
+                                        <input
+                                            className="photos-file hidden h-0 w-0"
+                                            type='file'
+                                            accept="image/*"
+                                            multiple
+                                            onChange={(e) => {
+                                                CheckFile(e, 'image').then((res) => {
+                                                    setpost({ ...post, photos: res.length > 0 ? res : undefined })
+                                                })
+                                            }} />
                                         <Button
                                             clear
-                                            className='animate__animated animate__fadeInRight ms-300 cursor-pointer !h-13 !w-13 flex justify-center items-center rounded-md mb-2'>
+                                            rounded
+                                            onClick={() => {
+                                                document.querySelector(".photos-file").value = null
+                                                document.querySelector(".photos-file").click()
+                                            }}
+                                            className='animate__animated animate__fadeInRight ms-300 cursor-pointer !h-13 !w-13 flex justify-center items-center shadow-md rounded-md mb-2'>
                                             <Plus className="w-7 h-7" />
                                         </Button>
                                     </SwiperSlide>
@@ -159,14 +188,15 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
                         </div>
                     </div>
                 </Card>
-            </div>
+            </div >
 
             {/* Emoji picker */}
             <Popover
                 opened={emojipicker.opened}
                 target={emojipicker.target}
                 size="w-auto"
-                onBackdropClick={() => setemojipicker({ ...emojipicker, target: undefined, opened: false })}>
+                onBackdropClick={() => setemojipicker({ ...emojipicker, target: undefined, opened: false })
+                }>
                 <Picker
                     title='Pick your emoji…'
                     emoji='point_up'
@@ -176,8 +206,7 @@ export default function CreatePost({ postFiles: { type, files }, setpostFiles })
                         setpost({ ...post, body: `${post.body}${e.native}` })
                         setemojipicker({ ...emojipicker, target: undefined, opened: false })
                     }} />
-            </Popover>
-
+            </Popover >
         </>
     )
 }

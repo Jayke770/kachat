@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Navbar, Link, Icon } from 'konsta/react'
-import { ChatBubbleTextFill, BellFill, Bars } from 'framework7-icons/react'
+import { ChatBubbleTextFill, BellFill, ArrowtriangleDownCircleFill } from 'framework7-icons/react'
 import NextLink from 'next/link'
 import Menu from './menu'
 export default function Navigation({ user }) {
@@ -26,12 +26,12 @@ export default function Navigation({ user }) {
                             </Link>
                         </NextLink>
                         <Link navbar>
-                            <Icon badge={2} badgeColors={{ bg: "bg-red-500" }}>
+                            <Icon badgeColors={{ bg: "bg-red-500" }}>
                                 <ChatBubbleTextFill className="w-7 h-7" />
                             </Icon>
                         </Link>
                         <Link navbar>
-                            <Icon badge={1} badgeColors={{ bg: "bg-red-500" }}>
+                            <Icon badgeColors={{ bg: "bg-red-500" }}>
                                 <BellFill className="w-7 h-7" />
                             </Icon>
                         </Link>
@@ -39,8 +39,8 @@ export default function Navigation({ user }) {
                             navbar
                             className='menu'
                             onClick={() => setmenu(true)}>
-                            <Icon badge={1} badgeColors={{ bg: "bg-red-500" }}>
-                                <Bars className="w-7 h-7" />
+                            <Icon badgeColors={{ bg: "bg-red-500" }}>
+                                <ArrowtriangleDownCircleFill className="w-7 h-7" />
                             </Icon>
                         </Link>
                     </>

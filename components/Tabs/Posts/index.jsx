@@ -10,16 +10,11 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import CreatePost from '../../../components/Tabs/Posts/createpost'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper'
-import CheckFile from '../../../lib/Posts/checkFIle'
 export default function Posts({ tab, user, posts }) {
     const [data, setdata] = useState({
         posts: posts,
         viewed: [],
         more: true
-    })
-    const [postFiles, setpostFiles] = useState({
-        type: undefined,
-        files: undefined
     })
     const stories = Array.from({ length: 10 })
     const loadposts = () => {
@@ -51,6 +46,13 @@ export default function Posts({ tab, user, posts }) {
             }
             setdata({ ...data, posts: newposts, viewed: viewedposts })
         }, 1000)
+    }
+    const openCreatepost = () => {
+        document.querySelector(".createpost").classList.add("flex", "animate__fadeIn")
+        document.querySelector(".createpost").classList.remove("hidden")
+        setTimeout(() => {
+            document.querySelector(".createpost").classList.remove("animate__fadeIn")
+        }, 500)
     }
     return (
         <>
@@ -107,39 +109,8 @@ export default function Posts({ tab, user, posts }) {
                                 <div className='grid grid-cols-2 gap-2'>
                                     <Button
                                         rounded
-                                        clear>
-                                        Photos
-                                        <input
-                                            className='absolute file:cursor-pointer opacity-0 block w-full'
-                                            accept='image/*'
-                                            type="file"
-                                            multiple
-                                            onChange={(e) => {
-                                                CheckFile(e, 'image').then((res) => {
-                                                    setpostFiles({ type: 'image', files: res })
-                                                    document.querySelector(".createpost").classList.add("flex", "animate__fadeIn")
-                                                    document.querySelector(".createpost").classList.remove("hidden")
-                                                    setTimeout(() => {
-                                                        document.querySelector(".createpost").classList.remove("animate__fadeIn")
-                                                    }, 500)
-                                                })
-                                            }} />
-                                    </Button>
-                                    <Button
-                                        rounded
-                                        clear>
-                                        File
-                                        <input
-                                            className='absolute file:cursor-pointer opacity-0 block w-full'
-                                            type="file"
-                                            multiple
-                                            onChange={(e) => {
-                                                CheckFile(e, 'file').then((res) => {
-
-                                                })
-                                            }}
-                                        />
-                                    </Button>
+                                        clear
+                                        onClick={openCreatepost}>Photos</Button>
                                 </div>
                             }>
                             <div className='flex gap-2'>
@@ -151,13 +122,7 @@ export default function Posts({ tab, user, posts }) {
                                 </NextLink>
                                 <div
                                     className='w-full rounded-3xl flex items-center px-4 bg-gray-100 dark:bg-zinc-800 cursor-pointer transition-all hover:bg-gray-200/70 dark:hover:bg-zinc-700/50'
-                                    onClick={() => {
-                                        document.querySelector(".createpost").classList.add("flex", "animate__fadeIn")
-                                        document.querySelector(".createpost").classList.remove("hidden")
-                                        setTimeout(() => {
-                                            document.querySelector(".createpost").classList.remove("animate__fadeIn")
-                                        }, 500)
-                                    }}>
+                                    onClick={openCreatepost}>
                                     <span className='text-base text-gray-500 dark:text-zinc-500'>Say Hello World!</span>
                                 </div>
                             </div>
@@ -242,9 +207,7 @@ export default function Posts({ tab, user, posts }) {
             </div>
 
             {/* Create Post */}
-            <CreatePost
-                postFiles={postFiles}
-                setpostFiles={setpostFiles} />
+            <CreatePost />
         </>
     )
 }

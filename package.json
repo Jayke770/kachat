@@ -16,6 +16,7 @@
     "aos": "^2.3.4",
     "emoji-mart": "^3.0.1",
     "framework7-icons": "^5.0.5",
+    "intro.js-react": "^0.6.0",
     "konsta": "^0.7.1",
     "moment": "^2.29.2",
     "mongodb": "^4.4.1",
