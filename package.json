@@ -18,7 +18,7 @@
     "framework7-icons": "^5.0.5",
     "intro.js-react": "^0.6.0",
     "konsta": "^0.7.1",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "mongodb": "^4.4.1",
     "mongoose": "^6.3.0",
     "nanoid": "^3.3.2",
